@@ -8,8 +8,10 @@ class Item extends Model
 {
     protected $guarded = [];
 
-    public function owner()
+
+
+    public function user()
     {
-        return $this->belongsTo(App\User::class);
+        return $this->belongsTo(User::class);
     }
 }

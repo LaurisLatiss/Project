@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::post('/user/change/email', 'HomeController@changeEmail')->name('email.update');
 
+Route::get('/deleteuser/{user_id}', 'DeleteUserController@deleteUser')->name('delete.user');
+
 Route::get('/welcome/back', "HomeController@maintanceModeOff")->name('live');
 Route::get('/sorrynotsorry/weare/busy', "HomeController@maintanceModeOn")->name('maintance');
 Route::get('change-password', 'Auth\UpdatePasswordController@index')->name('password.form');

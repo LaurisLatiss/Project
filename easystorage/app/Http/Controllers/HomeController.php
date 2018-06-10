@@ -32,7 +32,7 @@ class HomeController extends Controller
         if(auth()->user()->admin){
             $items = Item::all();
         }else{
-            $items = Item::where('owner', Auth::user()->id)->get();
+            $items = Item::where('user_id', Auth::user()->id)->get();
         }
 
     $users = User::get();
@@ -68,10 +68,10 @@ class HomeController extends Controller
         foreach ($users as $user){
             if(!$user->admin){
                 $user->maintaince_mode = true;
-                $user->save();
-                return redirect()->back();
+                $user->save();               
             }
         }
+        return redirect()->back();
     }
 
     public function maintanceModeOff(){
@@ -79,10 +79,10 @@ class HomeController extends Controller
         foreach ($users as $user){
             if(!$user->admin){
                 $user->maintaince_mode = false;
-                $user->save();
-                return redirect()->back();
+                $user->save();     
             }
         }
+        return redirect()->back();
     }
 
     public function maintaince_mode (){
@@ -93,13 +93,4 @@ class HomeController extends Controller
             }
         }
     }
-
-    function deleteUser($item_id)
-    {
-        $item = Item::find($item_id);
-        if (!isset($item->id)) return back()->withErrors(['Inventārs netika atrasts']);
-        $item->delete();
-        return redirect('/home#inventārs')->with('status', 'Inventārs dzēsts');
-    }
-
 }

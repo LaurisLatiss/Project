@@ -14,12 +14,13 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('owner');
-            $table->foreign('owner')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
             ->references('id')
             ->on('users')
-            ->onDelete('set null');
+            ->onDelete('cascade');
             $table->string('manufacturer');
             $table->string('name');
             $table->string('category');

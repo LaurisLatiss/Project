@@ -26,7 +26,7 @@ class ItemController extends Controller
 
 
         $data = [
-            'owner'           => Auth::user()->id,
+            'user_id'           => Auth::user()->id,
             'manufacturer'    => $request->input('manufacturer'),
             'name'              => $request->input('name'),
             'category'        => $request->input('category'),
@@ -44,7 +44,7 @@ class ItemController extends Controller
 
         $item = Item::find($item_id);
         if (!isset($item->id)) return back()->withErrors(['Inventārs netika atrasts.'])->withInput();
-        $item->owner = \Auth::id();
+        $item->user_id = \Auth::id();
         $item->manufacturer = $req->input('manufacturer');
         $item->name = $req->input('name');
         $item->category = $req->input('category');

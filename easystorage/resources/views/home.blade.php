@@ -122,8 +122,8 @@
                                                 @if($items->count() >= 1)
                                                     @foreach($items as $item)
                                                         <tr id="myUL">
-                                                            <td>{{$item->owner}}</td>
-                                                            <td>{{$item->owner}}</td>
+                                                            <td>{{$item->user->name}}</td>
+                                                            <td>{{$item->user_id}}</td>
                                                             <td>{{$item->manufacturer}}</td>
                                                             <td>{{$item->name}}</td>
                                                             <td>{{$item->category}}</td>
@@ -398,7 +398,7 @@
                                             <table class="table table-striped">
                                                 <div style="margin-top:30px" class="form-group">
                                                     <div class="col-md-6 col-md-offset-4">
-                                                            <a href=""><button type="submit" class="btn btn-danger form-control">Dzēst profilu</button></a>
+                                                            <a href="{{ route('delete.user', [Auth::id()]) }}"><button  type="submit" class="btn btn-danger form-control">Dzēst profilu</button></a>
                                                     </div>
                                                 </div>
                                             </table>
